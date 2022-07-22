@@ -40,7 +40,7 @@ pipeline {
 		    steps {
 				echo '********* Publish Report to JFrog Artifacts **********' 
 				withCredentials([usernamePassword(credentialsId: 'artifactory', passwordVariable: 'passwd', usernameVariable: 'user')]) {
-					sh 'jf rt upload test-reports/ python-generic-local/'
+					sh 'jf rt upload test-reports/ python-app/'
 				}
 				echo '********* Publish Report Finished **********'	
 			}
