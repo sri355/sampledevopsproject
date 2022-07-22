@@ -25,7 +25,7 @@ pipeline {
 		stage('SonarQube Analysis') {
 			steps {
 				echo '********* Test Stage Started **********'
-				withSonarQubeEnv(credentialsId: 'admin') {
+				withSonarQubeEnv(credentialsId: "admin") {
 					sh '${scannerHome}/bin/sonar-scanner \
 					-D sonar.projectKey=python'
 				}
