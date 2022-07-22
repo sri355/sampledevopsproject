@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-		scannerHome = tool ('SonarQube Scanner')
+		scannerHome = tool 'SonarQube Scanner'
     }
 
     stages {
@@ -25,7 +25,7 @@ pipeline {
 		stage('SonarQube Analysis') {
 			steps {
 				echo '********* Test Stage Started **********'
-				withCredentials(credentialsId: 'admin') {
+				withSonarQubeEnv('admin') {
 					sh '${scannerHome}/bin/sonar-scanner \
 					-D sonar.projectKey=python'
 				}
