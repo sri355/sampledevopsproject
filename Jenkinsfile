@@ -22,13 +22,13 @@ pipeline {
 				scannerHome = tool 'SonarQube Scanner'
     			}
 			steps {
-				echo '********* Test Stage Started **********'
+				echo '********* Code Analysis Started **********'
 				
 				withSonarQubeEnv('admin') {
 					sh '${scannerHome}/bin/sonar-scanner \
 					-D sonar.projectKey=python'
 				}
-				echo '********* Test Stage Finished **********'
+				echo '********* Code Analysis Finished **********'
 			}
 		}
         stage ('Generate Test Reports') {
