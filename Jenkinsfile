@@ -1,11 +1,6 @@
 // Declarative pipeline
 pipeline {
     agent any
-
-    environment {
-		scannerHome = tool 'SonarQube Scanner'
-    }
-
     stages {
         stage ('Clean Reports') {
             steps {
@@ -23,8 +18,12 @@ pipeline {
 		}
 		
 		stage('SonarQube Analysis') {
+			environment {
+				scannerHome = tool 'SonarQube Scanner'
+    			}
 			steps {
 				echo '********* Test Stage Started **********'
+				
 				withSonarQubeEnv('admin') {
 					sh '${scannerHome}/bin/sonar-scanner \
 					-D sonar.projectKey=python'
