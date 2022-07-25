@@ -13,6 +13,7 @@ pipeline {
 	    steps {
 		echo '********* Test Stage Started **********'
 		sh 'python3 test.py'
+		sh 'coverage html'
 		echo '********* Test Stage Finished **********'
 	    }
 	}
@@ -25,7 +26,8 @@ pipeline {
 		echo '********* Code Analysis Started **********'				
 		withSonarQubeEnv('admin') {
 		     sh '${scannerHome}/bin/sonar-scanner \
- 	   	     -D sonar.projectKey=sampledevopsproject'
+ 	   	     -D sonar.projectKey=sampledevopsproject \
+		     -Dsonar.python.coverage.reportPaths=htmlcov'
 		}
 		echo '********* Code Analysis Finished **********'
 	    }
