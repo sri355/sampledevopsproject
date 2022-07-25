@@ -5,7 +5,7 @@ pipeline {
         stage ('Clean Reports') {
             steps {
 		echo '********* Cleaning Workspace Stage Started **********'
-                sh 'rm -rf /s /q test-reports || true'  
+                sh 'rm -rf test-reports || true'  
 		echo '********* Cleaning Workspace Stage Finished **********'
             }
         }
