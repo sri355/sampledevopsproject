@@ -12,7 +12,7 @@ pipeline {
 	stage ('test') {
 	    steps {
 		echo '********* Test Stage Started **********'
-		sh 'coverage run test.py && coverage html'
+		sh 'coverage run test.py && coverage html && coverage report -m'
 		echo '********* Test Stage Finished **********'
 	    }
 	}
@@ -26,7 +26,6 @@ pipeline {
 		withSonarQubeEnv('admin') {
 		     sh '${scannerHome}/bin/sonar-scanner \
  	   	     -D sonar.projectKey=sampledevopsproject \
-		     -Dsonar.python.coverage.reportPaths=htmlcov/'
 		}
 		echo '********* Code Analysis Finished **********'
 	    }
