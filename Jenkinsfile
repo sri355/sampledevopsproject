@@ -32,6 +32,13 @@ pipeline {
 		echo '********* Code Analysis Finished **********'
 	    }
 	}
+	stage("Quality Gate") {
+            steps {
+              timeout(time: 1, unit: 'HOURS') {
+                waitForQualityGate abortPipeline: true
+              }
+            }
+        }
         stage ('Generate Test Reports') {
             steps {
 		echo '********* Generate Test Reports Start **********' 
