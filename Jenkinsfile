@@ -12,8 +12,7 @@ pipeline {
 	stage ('test') {
 	    steps {
 		echo '********* Test Stage Started **********'
-		sh 'python3 test.py'
-		sh 'coverage html'
+		sh 'python3 test.py && coverage run test.py && coverage html'
 		echo '********* Test Stage Finished **********'
 	    }
 	}
