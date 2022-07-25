@@ -32,16 +32,18 @@ pipeline {
 	}
         stage ('Generate Test Reports') {
             steps {
-                junit 'test-reports/*.xml'       
+		echo '********* Generate Test Reports Start **********' 
+                junit 'test-reports/*.xml'
+		echo '********* Generate Test Reports Finished **********' 
             }
         }
 	stage ('Publish Artifactory') {
 	    steps {
-		echo '********* Publish Report to JFrog Artifacts **********' 
+		echo '********* Publish Report JFrog Artifacts started **********' 
 		    withCredentials([usernamePassword(credentialsId: 'artifactory', passwordVariable: 'passwd', usernameVariable: 'user')]) {
     		         sh 'jf rt upload test-reports/ python-app/'
 		    }
-		echo '********* Publish Report Finished **********'	
+		echo '********* Publish Report JFrog Artifacts Finished **********'	
 	    }
 	}
     }
