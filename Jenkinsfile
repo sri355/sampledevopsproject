@@ -25,7 +25,8 @@ pipeline {
 		echo '********* Code Analysis Started **********'				
 		withSonarQubeEnv('admin') {
 		     sh '${scannerHome}/bin/sonar-scanner \
- 	   	     -D sonar.projectKey=sampledevopsproject'
+ 	   	     -D sonar.projectKey=sampledevopsproject \
+		     -D sonar.python.coverage.reportPaths=coverage.xml'
 		}
 		echo '********* Code Analysis Finished **********'
 	    }
