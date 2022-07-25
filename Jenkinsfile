@@ -26,7 +26,7 @@ pipeline {
 		withSonarQubeEnv('admin') {
 		     sh '${scannerHome}/bin/sonar-scanner \
  	   	     -D sonar.projectKey=sampledevopsproject \
-		     -Dsonar.python.coverage.reportPaths=/htmlcov'
+		     -Dsonar.python.coverage.reportPaths=htmlcov/'
 		}
 		echo '********* Code Analysis Finished **********'
 	    }
