@@ -24,7 +24,7 @@ pipeline {
 			steps {
 				echo '********* Test Stage Started **********'
 				
-				withSonarQubeEnv('admin') {
+				withSonarQubeEnv('SonarQube') {
 					sh '${scannerHome}/bin/sonar-scanner \
 					-D sonar.projectKey=python'
 				}
@@ -40,7 +40,7 @@ pipeline {
 		    steps {
 				echo '********* Publish Report to JFrog Artifacts **********' 
 				withCredentials([usernamePassword(credentialsId: 'artifactory', passwordVariable: 'passwd', usernameVariable: 'user')]) {
-					sh 'jf rt upload test-reports/ Python_Ci/'
+					sh 'jf rt upload test-reports/ python-app/'
 				}
 				echo '********* Publish Report Finished **********'	
 			}
