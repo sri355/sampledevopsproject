@@ -9,7 +9,7 @@ pipeline {
         }
 	stage ('test') {
 	    steps {
-		sh 'coverage run test.py && coverage html && coverage report'
+		sh 'python3 test.py && coverage run test.py && coverage html && coverage report app.py test.py'
 	    }
 	}	
 	stage('SonarQube Analysis') {
@@ -20,8 +20,7 @@ pipeline {
 		withSonarQubeEnv('admin') {
 		     sh '${scannerHome}/bin/sonar-scanner \
  	   	     -D sonar.projectKey=sampledevopsproject \
-		     -D sonar.python.coverage.reportPaths=coverage.xml \
-		     -D sonar.python.xunit.reportPath=test-reports/*.xml'	
+		     -D sonar.python.coverage.reportPaths=coverage.xml'	
 		}
 	    }
 	}
